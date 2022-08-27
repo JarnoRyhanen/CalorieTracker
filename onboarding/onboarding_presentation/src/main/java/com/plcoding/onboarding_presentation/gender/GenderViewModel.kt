@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GenderViewModel @Inject constructor(
     private val preferences: Preferences
-) : ViewModel() {
+): ViewModel() {
 
     var selectedGender by mutableStateOf<Gender>(Gender.Male)
         private set
@@ -36,5 +36,4 @@ class GenderViewModel @Inject constructor(
             _uiEvent.send(UiEvent.Navigate(Route.AGE))
         }
     }
-
 }

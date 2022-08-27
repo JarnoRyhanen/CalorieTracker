@@ -28,27 +28,27 @@ fun SelectableButton(
     textStyle: TextStyle = MaterialTheme.typography.button
 ) {
     Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-            .clip(RoundedCornerShape(100.dp))
-            .border(
-                width = 2.dp,
-                color = color,
-                shape = RoundedCornerShape(100.dp)
-            )
-            .background(
-                color = if (isSelected) color else Color.Transparent,
-                shape = RoundedCornerShape(100.dp)
-            )
-            .clickable {
-                onClick()
-            }
-            .padding(LocalSpacing.current.spaceMedium)
+       contentAlignment = Alignment.Center,
+       modifier = modifier
+           .clip(RoundedCornerShape(100.dp))
+           .border(
+               width = 2.dp,
+               color = color,
+               shape = RoundedCornerShape(100.dp)
+           )
+           .background(
+               color = if (isSelected) color else Color.Transparent,
+               shape = RoundedCornerShape(100.dp)
+           )
+           .clickable {
+               onClick()
+           }
+           .padding(LocalSpacing.current.spaceMedium)
     ) {
         Text(
             text = text,
             style = textStyle,
-            color = if (isSelected) selectedTextColor else color
+            color = if(isSelected) selectedTextColor else color,
         )
     }
 }

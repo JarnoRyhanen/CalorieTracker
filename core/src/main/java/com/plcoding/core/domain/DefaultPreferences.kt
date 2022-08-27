@@ -10,7 +10,6 @@ import com.plcoding.core.domain.preferences.Preferences
 class DefaultPreferences(
     private val sharedPref: SharedPreferences
 ): Preferences {
-
     override fun saveGender(gender: Gender) {
         sharedPref.edit()
             .putString(Preferences.KEY_GENDER, gender.name)
@@ -20,7 +19,8 @@ class DefaultPreferences(
     override fun saveAge(age: Int) {
         sharedPref.edit()
             .putInt(Preferences.KEY_AGE, age)
-            .apply()    }
+            .apply()
+    }
 
     override fun saveWeight(weight: Float) {
         sharedPref.edit()
@@ -52,15 +52,15 @@ class DefaultPreferences(
             .apply()
     }
 
-    override fun saveFatRatio(ratio: Float) {
-        sharedPref.edit()
-            .putFloat(Preferences.KEY_FAT_RATIO, ratio)
-            .apply()
-    }
-
     override fun saveProteinRatio(ratio: Float) {
         sharedPref.edit()
             .putFloat(Preferences.KEY_PROTEIN_RATIO, ratio)
+            .apply()
+    }
+
+    override fun saveFatRatio(ratio: Float) {
+        sharedPref.edit()
+            .putFloat(Preferences.KEY_FAT_RATIO, ratio)
             .apply()
     }
 
@@ -69,22 +69,23 @@ class DefaultPreferences(
         val height = sharedPref.getInt(Preferences.KEY_HEIGHT, -1)
         val weight = sharedPref.getFloat(Preferences.KEY_WEIGHT, -1f)
         val genderString = sharedPref.getString(Preferences.KEY_GENDER, null)
-        val activityLevelString = sharedPref.getString(Preferences.KEY_ACTIVITY_LEVEL, null)
+        val activityLevelString = sharedPref
+            .getString(Preferences.KEY_ACTIVITY_LEVEL, null)
         val goalType = sharedPref.getString(Preferences.KEY_GOAL_TYPE, null)
-        val fatRatio = sharedPref.getFloat(Preferences.KEY_FAT_RATIO, -1f)
-        val proteinRatio = sharedPref.getFloat(Preferences.KEY_PROTEIN_RATIO, -1f)
         val carbRatio = sharedPref.getFloat(Preferences.KEY_CARB_RATIO, -1f)
+        val proteinRatio = sharedPref.getFloat(Preferences.KEY_PROTEIN_RATIO, -1f)
+        val fatRatio = sharedPref.getFloat(Preferences.KEY_FAT_RATIO, -1f)
 
         return UserInfo(
-            gender = Gender.fromString(name = genderString ?: "male"),
+            gender = Gender.fromString(genderString ?: "male"),
             age = age,
             weight = weight,
             height = height,
             activityLevel = ActivityLevel.fromString(activityLevelString ?: "medium"),
             goalType = GoalType.fromString(goalType ?: "keep_weight"),
-            fatRatio = fatRatio,
             carbRatio = carbRatio,
-            proteinRatio = proteinRatio
+            proteinRatio = proteinRatio,
+            fatRatio = fatRatio
         )
     }
 }

@@ -4,9 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,6 +16,8 @@ import com.plcoding.calorytracker.ui.theme.CaloryTrackerTheme
 import com.plcoding.core.navigation.Route
 import com.plcoding.onboarding_presentation.age.AgeScreen
 import com.plcoding.onboarding_presentation.gender.GenderScreen
+import com.plcoding.onboarding_presentation.height.HeightScreen
+import com.plcoding.onboarding_presentation.weight.WeightScreen
 import com.plcoding.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,10 +50,16 @@ class MainActivity : ComponentActivity() {
                             GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.HEIGHT) {
-
+                            HeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.WEIGHT) {
-
+                            WeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.NUTRIENT_GOAL) {
 
@@ -61,6 +70,7 @@ class MainActivity : ComponentActivity() {
                         composable(Route.GOAL) {
 
                         }
+
                         composable(Route.TRACKER_OVERVIEW) {
 
                         }
@@ -69,6 +79,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+
             }
         }
     }
