@@ -1,6 +1,5 @@
 package com.plcoding.tracker_presentation.tracker_overview.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Icon
@@ -36,7 +35,7 @@ fun DaySelector(
             )
         }
         Text(
-            text = parseDateText(date = date),
+            text = ParseDateText(date = date),
             style = MaterialTheme.typography.h2
         )
         IconButton(onClick = onNextDayClick) {
